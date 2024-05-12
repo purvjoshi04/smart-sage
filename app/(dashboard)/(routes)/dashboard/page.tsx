@@ -11,6 +11,7 @@ const tools = [
     icon: MessageTwoTone,
     color: "text-violet-500",
     bgColor: "bg-violet-500/10",
+    arrowColor: "text-violet-600",
     href: "/conversation"
   },
   {
@@ -18,6 +19,7 @@ const tools = [
     icon: BrokenImageTwoTone,
     color: "text-pink-700",
     bgColor: "bg-pink-700/10",
+    arrowColor:"text-pink-700",
     href: "/image"
   },
   {
@@ -25,6 +27,7 @@ const tools = [
     icon: VideoCameraBackTwoTone,
     color: "text-orange-700",
     bgColor: "bg-orange-700/10",
+    arrowColor:"text-orange-700",
     href: "/conversation"
   },
   {
@@ -32,6 +35,7 @@ const tools = [
     icon: MusicNoteTwoTone,
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/10",
+    arrowColor: "text-emerald-500",
     href: "/conversation"
   },
   {
@@ -39,6 +43,7 @@ const tools = [
     icon: CodeTwoTone,
     color: "text-green-700",
     bgColor: "bg-green-700/10",
+    arrowColor:"text-green-700",
     href: "/conversation"
   },
 ]
@@ -52,10 +57,10 @@ const DashboardPage = () => {
     <div>
       <div className="mb-8 space-y-4">
         <h2 className="text-2xl md:text-4xl font-bold text-center">
-          Explore the power of AI
+          Explore the power of SmartSage
         </h2>
         <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-          Chat with the smartest AI - Experience the power of AI
+          Chat with the smartest AI - Experience the power of SmartSage
         </p>
       </div>
       <div className="px-4 md:px-20 space-y-4">
@@ -73,7 +78,7 @@ const DashboardPage = () => {
                 {tool.label}
               </div>
             </div>
-            <ArrowForwardTwoTone className="w-5 h-5" />
+            <ArrowForwardTwoTone className={cn("w-5 h-5",tool.arrowColor)} />
           </Card>
         ))}
       </div>
