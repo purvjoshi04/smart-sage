@@ -71,10 +71,7 @@ const Sidebar = () => {
                             fill
                             alt="Logo"
                             src="/logo.png"
-                            style={{
-                                maxWidth: "100%",
-                                height: "auto"
-                            }} />
+                            />
                     </div>
                     <h1 className={cn("text-2xl font-bold", montserrat.className)}>
                         SmartSage
