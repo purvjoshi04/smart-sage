@@ -8,10 +8,7 @@ export const Loader = () => {
                     alt="logo"
                     fill
                     src="/logo.png"
-                    style={{
-                        maxWidth: "100%",
-                        height: "auto"
-                    }} />
+                />
             </div>
             <p className="text-sm text-muted-foreground">
                 SmartSage is finding...

@@ -11,7 +11,7 @@ export const Empty = ({
     return (
         <div className="h-full p-20 flex flex-col items-center justify-center">
             <div className="relative h-60 w-60">
-                <Image alt="Empty" src="/empty.png" fill sizes="100vw" />
+                <Image alt="Empty" src="/empty.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
                 </div>
                 <p className="text-muted-foreground text-sm text-center pt-7 pl-10">
                     {label}
