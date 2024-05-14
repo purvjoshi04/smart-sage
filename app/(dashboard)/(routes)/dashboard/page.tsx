@@ -28,7 +28,7 @@ const tools = [
     color: "text-orange-700",
     bgColor: "bg-orange-700/10",
     arrowColor:"text-orange-700",
-    href: "/conversation"
+    href: "/video"
   },
   {
     label: "Music Generation",
@@ -36,7 +36,7 @@ const tools = [
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/10",
     arrowColor: "text-emerald-500",
-    href: "/conversation"
+    href: "/music"
   },
   {
     label: "Code Generation",
@@ -44,7 +44,7 @@ const tools = [
     color: "text-green-700",
     bgColor: "bg-green-700/10",
     arrowColor:"text-green-700",
-    href: "/conversation"
+    href: "/code"
   },
 ]
 
