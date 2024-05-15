@@ -19,7 +19,6 @@ import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
-import ReactMarkdown from "react-markdown";
 
 const ConversationPage = () => {
     const router = useRouter();
@@ -46,7 +45,7 @@ const ConversationPage = () => {
 
             const response = await axios.post("/api/conversation", {
                 messages: newMessages,
-              });
+            });
 
             setMessages((current) => [...current, userMessage, response.data]);
 
@@ -106,25 +105,15 @@ const ConversationPage = () => {
                         <Empty label="No conversation started." />
                     )}
                     <div className="flex flex-col-reverse gap-y-4">
-                        {messages.map((message) => (
+                        {messages.map((message, index) => (
                             <div
-                                key={message.content}
-                                className={cn(
-                                    "p-8 w-full flex items-start gap-x-8 rounded-lg",
-                                    message.role === "user"
-                                        ? "bg-white border border-black border-opacity-10"
-                                        : "bg-muted"
-                                )}
+                                key={index}
+                                className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg", message.role === "user" ? "bg-white border border-black/10" : "bg-muted")}
                             >
                                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                                <div
-                                    className="text-sm overflow-hidden leading-7"
-                                    dangerouslySetInnerHTML={{
-                                        __html: message.content
-                                            ? message.content.replace(/\n/g, "<br />")
-                                            : "",
-                                    }}
-                                />
+                                <p className="text-sm">
+                                {typeof message.content === 'string' ? message.content : "Unsupported message format"}
+                                </p>
                             </div>
                         ))}
                     </div>
