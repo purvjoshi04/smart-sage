@@ -10,7 +10,6 @@ import axios from "axios";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MessageSquare } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import OpenAI from "openai";
@@ -19,6 +18,7 @@ import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { MessageTwoTone } from "@mui/icons-material";
 
 const ConversationPage = () => {
     const router = useRouter();
@@ -63,7 +63,7 @@ const ConversationPage = () => {
             <Heading
                 title="Conversation"
                 description="Our most innovative conversational model to date."
-                icon={MessageSquare}
+                icon={MessageTwoTone}
                 iconColor="text-violet-500"
                 bgColor="bg-violet-600/10"
             />
