@@ -23,7 +23,7 @@ import { BotAvatar } from "@/components/bot-avatar";
 const ConversationPage = () => {
     const router = useRouter();
     const [messages, setMessages] = useState<
-        OpenAI.Chat.CreateChatCompletionRequestMessage[]
+        OpenAI.Chat.ChatCompletionMessageParam[]
     >([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -36,7 +36,7 @@ const ConversationPage = () => {
     const isLoading = form.formState.isSubmitting;
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
+            const userMessage: OpenAI.Chat.ChatCompletionMessageParam = {
                 role: "user",
                 content: values.prompt,
             };
@@ -82,7 +82,7 @@ const ConversationPage = () => {
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                                 disabled={isLoading}
-                                                placeholder="What is Artificial Artificial Intelligence?"
+                                                placeholder="What is Artificial Intelligence?"
                                                 {...field}
                                             />
                                         </FormControl>
