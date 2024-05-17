@@ -179,14 +179,14 @@ const ImagePage = () => {
                                 key={src}
                                 className="rounded-lg overflow-hidden"
                             >
-                               <div className="relative aspect-square">
+                            <div className="relative aspect-square">
                                     <Image 
                                         alt="image"
                                         fill
                                         src={src}
                                     />
-                               </div> 
-                               <CardFooter className="p-2">
+                            </div> 
+                            <CardFooter className="p-2">
                                     <Button 
                                     onClick={() => window.open(src)}
                                     className="w-full" 
@@ -194,7 +194,7 @@ const ImagePage = () => {
                                         <DownloadTwoTone className="h-3 w-4 mr-2"/>
                                         Download
                                     </Button>
-                               </CardFooter>
+                            </CardFooter>
                             </Card>
                         ))}
                     </div>
