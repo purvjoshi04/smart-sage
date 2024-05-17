@@ -12,7 +12,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import OpenAI from "openai";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { MusicNoteTwoTone } from "@mui/icons-material";
