@@ -19,8 +19,10 @@ import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 import { MessageTwoTone } from "@mui/icons-material";
+import { useProModel } from "@/hooks/use-pro-modal";
 
 const ConversationPage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [messages, setMessages] = useState<
         OpenAI.Chat.ChatCompletionMessageParam[]
@@ -51,8 +53,9 @@ const ConversationPage = () => {
 
             form.reset();
         } catch (error: any) {
-            //ToDo: Open Pro model
-            console.log(error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            }
         } finally {
             router.refresh();
         }
@@ -112,7 +115,7 @@ const ConversationPage = () => {
                             >
                                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                                 <p className="text-sm">
-                                {typeof message.content === 'string' ? message.content : "Unsupported message format"}
+                                    {typeof message.content === 'string' ? message.content : "Unsupported message format"}
                                 </p>
                             </div>
                         ))}

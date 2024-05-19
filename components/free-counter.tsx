@@ -6,6 +6,7 @@ import { MAX_FREE_COUNTS } from "@/constants";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import { useProModel } from "@/hooks/use-pro-modal";
 
 interface FreeCounterProps {
     apiLimitCount: number;
@@ -15,6 +16,7 @@ interface FreeCounterProps {
 export const FreeCounter = ({
     apiLimitCount
 }: FreeCounterProps) => {
+    const proModal = useProModel();
     const [mounted, SetMounted] = useState(false);
 
     useEffect(() => {
@@ -38,7 +40,7 @@ export const FreeCounter = ({
                             value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
                         />
                     </div>
-                    <Button className="w-full" variant="premium">
+                    <Button onClick={proModal.onOpen} className="w-full" variant="premium">
                         Upgrade
                         <ElectricBoltIcon className="w-5 h-5 ml-1 fill-white"/>
                     </Button>

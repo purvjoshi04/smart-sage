@@ -15,8 +15,10 @@ import { useState } from "react";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { VideoCameraBackTwoTone } from "@mui/icons-material";
+import { useProModel } from "@/hooks/use-pro-modal";
 
 const VidoePage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [video, setVideo] = useState<string>();
 
@@ -38,7 +40,9 @@ const VidoePage = () => {
 
             form.reset();
         } catch (error: any) {
-            //ToDo: Open Pro model
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            }
             console.log(error);
         } finally {
             router.refresh();

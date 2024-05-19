@@ -15,8 +15,10 @@ import { useState } from "react";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { MusicNoteTwoTone } from "@mui/icons-material";
+import { useProModel } from "@/hooks/use-pro-modal";
 
 const MusicPage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [music, setMusic] = useState<string>();
 
@@ -38,8 +40,9 @@ const MusicPage = () => {
 
             form.reset();
         } catch (error: any) {
-            //ToDo: Open Pro model
-            console.log(error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            }
         } finally {
             router.refresh();
         }

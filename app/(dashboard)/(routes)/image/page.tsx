@@ -33,9 +33,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import { BrokenImageTwoTone, DownloadTwoTone,} from "@mui/icons-material";
+import { useProModel } from "@/hooks/use-pro-modal";
 
 
 const ImagePage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [images, setImages] = useState<string[]>([])
 
@@ -58,8 +60,9 @@ const ImagePage = () => {
             setImages(urls);
             form.reset();
         } catch (error: any) {
-            //ToDo: Open Pro model
-            console.log(error);
+            if (error?.response?.status === 403) {
+                proModal.onOpen();
+            }
         } finally {
             router.refresh();
         }
