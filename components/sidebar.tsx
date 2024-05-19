@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 // import { Code, ImageIcon, MessageSquare, Music, Settings, VideoIcon } from "lucide-react";
 import { DashboardTwoTone, MessageTwoTone, BrokenImageTwoTone, VideoCameraBackTwoTone, MusicNoteTwoTone, CodeTwoTone, SettingsTwoTone } from "@mui/icons-material";
 import { usePathname } from "next/navigation";
+import { FreeCounter } from "./free-counter";
 
 const montserrat = Montserrat(
     {
@@ -56,9 +57,15 @@ const routes = [
         icon: SettingsTwoTone,
         href: "/settings",
     },
-]
+];
 
-const Sidebar = () => {
+interface SidebarProps {
+    apiLimitCount: number;
+};
+
+const Sidebar = ({
+    apiLimitCount = 0
+}: SidebarProps) => {
 
     const pathName = usePathname()
 
@@ -95,6 +102,9 @@ const Sidebar = () => {
                     ))}
                 </div>
             </div>
+            <FreeCounter 
+                apiLimitCount={apiLimitCount}
+            />
         </div>
     );
 }
