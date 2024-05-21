@@ -61,10 +61,12 @@ const routes = [
 
 interface SidebarProps {
     apiLimitCount: number;
+    isPro: boolean;
 };
 
 const Sidebar = ({
-    apiLimitCount = 0
+    apiLimitCount = 0,
+    isPro = false,
 }: SidebarProps) => {
 
     const pathName = usePathname()
@@ -79,7 +81,7 @@ const Sidebar = ({
                             alt="Logo"
                             src="/logo.png"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            />
+                        />
                     </div>
                     <h1 className={cn("text-2xl font-bold", montserrat.className)}>
                         SmartSage
@@ -102,7 +104,8 @@ const Sidebar = ({
                     ))}
                 </div>
             </div>
-            <FreeCounter 
+            <FreeCounter
+                isPro={isPro}
                 apiLimitCount={apiLimitCount}
             />
         </div>
