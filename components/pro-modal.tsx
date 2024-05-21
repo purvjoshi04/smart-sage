@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
 import { MessageTwoTone, BrokenImageTwoTone, VideoCameraBackTwoTone, MusicNoteTwoTone, CodeTwoTone, ElectricBolt } from "@mui/icons-material";
@@ -11,7 +12,7 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import CheckIcon from '@mui/icons-material/Check';
 import { Button } from "@/components/ui/button";
-import toast from "react-hot-toast";
+
 const tools = [
     {
         label: "Conversation",
