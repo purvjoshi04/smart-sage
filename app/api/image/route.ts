@@ -4,6 +4,7 @@ import OpenAI from "openai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 
 const openai = new OpenAI({
@@ -21,7 +22,7 @@ export async function POST(
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { prompt, amount = 1, resolution = "512x512"  } = body;
+    const { prompt, amount = 1, resolution = "512x512" } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -42,10 +43,12 @@ export async function POST(
     }
 
     const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
 
-    if (!freeTrial) {
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free trial has expired", { status: 403 })
     }
+
 
 
     const response = await openai.images.generate({
@@ -53,8 +56,10 @@ export async function POST(
       n: parseInt(amount, 10),
       size: resolution
     });
-    
-    await increaseApiLimit();
+
+    if (!isPro) {
+      await increaseApiLimit();
+    }
 
     return NextResponse.json(response.data);
   } catch (error) {
