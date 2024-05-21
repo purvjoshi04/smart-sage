@@ -12,7 +12,6 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import CheckIcon from '@mui/icons-material/Check';
 import { Button } from "@/components/ui/button";
-
 const tools = [
     {
         label: "Conversation",
