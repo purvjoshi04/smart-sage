@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import { Heading } from "@/components/heading";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,7 @@ const VidoePage = () => {
         try {
             setVideo(undefined);
 
-            const response = await axios.post("/api/video",values);
+            const response = await axios.post("/api/video", values);
 
             setVideo(response.data[0]);
 
@@ -42,6 +43,8 @@ const VidoePage = () => {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
+            } else {
+                toast.error("Something went wrong")
             }
             console.log(error);
         } finally {
@@ -97,7 +100,7 @@ const VidoePage = () => {
                     )}
                     {video && (
                         <video controls className="w-full mt-8 aspect-video rounded-lg border bg-black">
-                            <source src={video}/>
+                            <source src={video} />
                         </video>
                     )}
                 </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import { Heading } from "@/components/heading";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,8 @@ const ConversationPage = () => {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
+            }else {
+                toast.error("Something went wrong")
             }
         } finally {
             router.refresh();
