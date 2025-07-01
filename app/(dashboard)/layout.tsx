@@ -67,8 +67,6 @@ const DashboardLayout = async ({
                 <Navbar />
                 {children}
             </main>
-            
-            {/* API Limit Overlay - shows when backend limits are exceeded */}
             <ApiLimitOverlay isBackendLimitExceeded={isBackendLimitExceeded} />
         </div>
     )
