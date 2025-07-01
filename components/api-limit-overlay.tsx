@@ -39,11 +39,11 @@ export const ApiLimitOverlay = ({ isBackendLimitExceeded }: ApiLimitOverlayProps
                         API Limit Exceeded
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        Sorry, all API key limits have been exceeded. Please try again later or contact support for assistance.
+                        Sorry, all API key limits have been exceeded. Please try again later.
                     </p>
                     <div className="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
                         <p className="text-sm text-red-700 dark:text-red-300">
-                            This affects all AI-powered features on the platform. We apologize for the inconvenience.
+                            This affects all AI-powered features on the platform. I apologize for the inconvenience.
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3">
@@ -54,12 +54,12 @@ export const ApiLimitOverlay = ({ isBackendLimitExceeded }: ApiLimitOverlayProps
                             <RefreshCw size={16} />
                             Continue to Dashboard
                         </button>
-                        <button
+                        {/* <button
                             onClick={handleClose}
                             className="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 px-6 py-3 rounded-lg transition-colors font-medium"
                         >
                             Close
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
