@@ -54,12 +54,6 @@ export const ApiLimitOverlay = ({ isBackendLimitExceeded }: ApiLimitOverlayProps
                             <RefreshCw size={16} />
                             Continue to Dashboard
                         </button>
-                        {/* <button
-                            onClick={handleClose}
-                            className="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 px-6 py-3 rounded-lg transition-colors font-medium"
-                        >
-                            Close
-                        </button> */}
                     </div>
                 </div>
             </div>
