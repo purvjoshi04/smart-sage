@@ -45,9 +45,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push Docker Image
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          docker build -f Dockerfile --target production -t $IMAGE_NAME .
-          docker push $IMAGE_NAME
+          docker build \
+            --build-arg OPENAI_API_KEY=$OPENAI_API_KEY \
+            --target production \
+            -t $REGISTRY/$IMAGE_NAME:${IMAGE_TAG} .
+          docker tag $REGISTRY/$IMAGE_NAME:${IMAGE_TAG} $REGISTRY/$IMAGE_NAME:latest
+          docker push $REGISTRY/$IMAGE_NAME:${IMAGE_TAG}
+          docker push $REGISTRY/$IMAGE_NAME:latest
 
       - name: SSH and Deploy on Homelab
         uses: appleboy/ssh-action@v1.0.0
