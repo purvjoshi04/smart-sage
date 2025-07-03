@@ -27,7 +27,7 @@ EXPOSE 3000
 
 CMD ["node", "server.js"]
 
-FROM node:18-alpine as dev
+FROM node:18-alpine AS dev
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
 COPY package*.json ./

@@ -1,0 +1,87 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  IMAGE_TAG: ${{ github.sha }}
+  IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ github.sha }}
+
+jobs:
+  code-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: code-check
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm run test --if-present
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -f Dockerfile --target production -t $IMAGE_NAME .
+          docker push $IMAGE_NAME
+
+      - name: SSH and Deploy on Homelab
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOMELAB_HOST }}
+          username: ${{ secrets.HOMELAB_USER }}
+          key: ${{ secrets.HOMELAB_SSH_KEY }}
+          port: ${{ secrets.HOMELAB_PORT }}
+          script: |
+            docker pull $IMAGE_NAME
+            docker stop smart-sage-ai || true
+            docker rm smart-sage-ai || true
+            docker run -d \
+              --name smart-sage-ai \
+              -p 3000:3000 \
+              --restart unless-stopped \
+              $IMAGE_NAME
+
