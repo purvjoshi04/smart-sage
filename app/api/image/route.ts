@@ -1,8 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
-
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
 
@@ -10,11 +8,6 @@ import { checkSubscription } from "@/lib/subscription";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-const instructionMessage: ChatCompletionMessageParam = {
-  role: "system",
-  content: "Answer questions as short and quickly as possible. You must do it under 75 tokens."
-}
 
 export async function POST(
   req: Request
