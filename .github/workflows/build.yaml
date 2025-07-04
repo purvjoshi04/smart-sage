@@ -45,12 +45,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Debug API Key (should not be empty)
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          echo "Key starts with: ${OPENAI_API_KEY:0:5}"
-
 
       - name: Build and Push Docker Image
         run: |
