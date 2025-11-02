@@ -20,7 +20,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/icons-material": "^5.15.16",
     "@mui/material": "^5.15.16",
-    "@prisma/client": "^6.9.0",
+    "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.1",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
