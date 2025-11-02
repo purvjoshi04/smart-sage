@@ -12,14 +12,14 @@ const openai = new OpenAI({
 
 const instructionMessage: ChatCompletionMessageParam = {
   role: "system",
-  content: "You are a code generator, You must answer only i markdown code snippets. Use ocde comments for explanation."
+  content: "You are a code generator, You must answer only i markdown code snippets. Use code comments for explanation."
 }
 
 export async function POST(
   req: Request
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     const body = await req.json();
     const { messages } = body;
 

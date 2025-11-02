@@ -4,7 +4,7 @@ import prismadb from "./prismadb";
 import { MAX_FREE_COUNTS } from "@/constants";
 
 export const increaseApiLimit = async () => {
-    const { userId } = auth();
+    const { userId } = await auth();
 
     if (!userId) {
         return;
@@ -29,7 +29,7 @@ export const increaseApiLimit = async () => {
 };
 
 export const checkApiLimit = async () => {
-    const { userId } = auth();
+    const { userId } = await auth();
 
     if(!userId){
         return false;
@@ -49,7 +49,7 @@ export const checkApiLimit = async () => {
 }
 
 export const getApiLimitCount = async () => {
-    const { userId } = auth()
+    const { userId } = await auth()
 
     if(!userId) {
         return 0;
